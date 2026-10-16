@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace ProJ.Controllers;
 
-[Authorize]
 public class ReservaServicosController : Controller
 {
     private readonly DbPetShopContext _context;

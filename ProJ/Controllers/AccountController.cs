@@ -54,12 +54,16 @@ public class AccountController : Controller
             CookieAuthenticationDefaults.AuthenticationScheme,
             new ClaimsPrincipal(claimsIdentity));
 
-        return RedirectToAction("Index", "ReservaServico");
+        HttpContext.Session.SetString("UsuarioCpf", cliente.Cpf);
+
+        return RedirectToAction("Index", "ReservaServicos");
     }
 
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        return RedirectToAction("Login");
+        HttpContext.Session.Clear();
+
+        return RedirectToAction("Login", "Account");
     }
 }
